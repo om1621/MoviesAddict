@@ -1,0 +1,15 @@
+.header-div
+{
+    width: 100%;
+    background: black;
+    color: white;
+    padding: 15px 0 15px 0;
+
+}
+
+.title
+{
+    margin: 0;
+    margin-left: 4%;
+    font-size: 1.25em;
+}

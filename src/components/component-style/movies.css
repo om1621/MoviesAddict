@@ -1,0 +1,110 @@
+.pura-dabba
+{
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    color: white;
+}
+
+.photu-dabba img
+{
+    border-radius: 3px 0 0 3px;
+}
+
+@media screen and (min-width: 768px)
+{
+    .photu-dabba
+    {
+        padding-right: 0;
+    }
+}
+
+
+.info-dabba
+{
+    border-radius: 0 3px 3px 0;
+    padding: 15px !important;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.dibba-title
+{
+    text-transform: uppercase;
+}
+
+.grey
+{
+    font-size: 24px;
+    font-weight: 400;
+    color: #00ff95;
+}
+
+.properties
+{
+    margin: 0;
+    font-size: 18px;
+}
+
+.thanks
+{
+    color:#00ff95;;
+}
+
+.thanks1
+{
+    color: #00ff95;
+}
+
+.heading
+{
+    background: rgba(0, 0, 0, 0.85);
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.thanks img
+{
+    height: 100px;
+}
+
+@media screen and (max-width: 440px)
+{
+    .thanks
+    {
+        font-size: 1.6rem;
+    }
+
+    .thanks1
+    {
+        font-size: 2.5rem;
+    }
+
+    .heading
+    {
+        text-align: center;
+    }
+
+    .thanks img
+    {
+        height: 60px;
+    }
+
+    .info-dabba
+    {
+        margin: 0 15px;
+        margin-top: -25%;
+    }
+
+    .photu-dabba
+    {
+        margin: 0 20px;
+    }
+
+    .rating
+    {
+        color: #00ff8cd4;
+    }
+
+}
+
+

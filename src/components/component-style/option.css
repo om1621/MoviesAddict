@@ -1,0 +1,170 @@
+.synopsis
+{
+    max-height: 125px;
+    overflow: hidden;
+}
+
+.details
+{
+    float: right;
+}
+
+.option
+{
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+}
+
+
+
+/* @media screen and (min-width: 440px)
+{
+    .dibba
+    {
+        background: white !important;
+        color: black !important;
+    }
+} */
+
+/* .dibba
+{
+    margin-left: auto;
+    margin-right: auto;
+} */
+
+.movie-title
+{
+    max-height: 85px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 440px)
+{
+    .dibba
+    {
+        max-width: 300px;
+    }
+
+    .bada-dibba
+    {
+        margin-left: 20px;
+    }
+}
+
+@media screen and (max-width: 1640px)
+{
+
+    .photu-dabba
+    {
+        margin-top: 0 !important;
+    }
+
+    .synopsis
+    {
+        max-height: 220px;
+        overflow: hidden;
+    }
+
+    .details
+    {
+        float: left;
+    }
+
+    .bada-dibba
+    {
+        position: relative;
+        min-height: 450px;
+    }
+
+    .dibba
+    {
+        width: 310px;
+        height: 100%;
+    }
+
+    .faded-one
+    {
+        opacity: 0.4;
+    }
+
+    .text-one
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        background: transparent !important;
+        border: none;
+    }
+
+    .dibba
+    {
+        color: #00ff8c !important;
+    }
+
+    .synopsis
+    {
+        font-weight: 500;
+        color: #fff;
+    }
+
+    .movie-title
+    {
+        font-size: 2rem !important;
+    }
+
+    .details
+    {
+        background: transparent !important;
+        margin-left: 33%;
+        margin-top: 5px;
+    }
+
+    .link
+    {
+        color: #00ff8c !important;
+    }
+}
+
+/* @media screen and (min-width: 440px)
+{
+    .faded-one
+    {
+        display: none;
+    }
+} */
+
+.faded-one
+{
+    opacity: 1;
+}
+
+.text-one
+{
+    opacity: 0;
+}
+
+.bada-dibba:hover .faded-one
+{
+    opacity: 0.35;
+    transition: all 0.5s ease-in-out;
+}
+
+.bada-dibba:hover .text-one
+{
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+}
+
+.result
+{
+    color: #fff !important;
+}
+
+@media screen and (max-width: 768px)
+{
+    .result
+    {
+        font-size: 2rem !important;
+    }
+}
