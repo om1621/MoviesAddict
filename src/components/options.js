@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Option from './option';
 import store from '../store/index'
-import {updateIds} from '../actions/index'
+import {updateIds, updatePage} from '../actions/index'
 import loader from '../loading.gif'
 
 const Options = () => {
@@ -59,17 +59,25 @@ const Options = () => {
  
     }, [])
 
+    const goBack = () => {
+        store.dispatch(updatePage(store.getState().page - 1));
+    }
+
     return (
         <>
-            { loading ? ( <> <div className="row">
-                <div className="col-sm-12 text-center mt-5">
+            { loading ? ( <> 
+
+           
+            <div className="row option">
+                <button className="btn btn-primary" style={{marginLeft: "2rem"}} onClick={goBack} > Go Back </button>
+                <div className="col-sm-12 text-center mt-5" >
                     <h1 className="result"> {store.getState().ids.length} RESULTS MATCHING YOUR SEARCH </h1>
                 </div>
             </div>
        
             <div className='row my-4 option'>
                 {store.getState().ids.map(id => (
-                    <Option id={id} />
+                    <Option id={id} key={id} />
                 ))}
             </div> </> ) 
             : 

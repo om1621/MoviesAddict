@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import './component-style/movies.css';
 import logo from './images/logo.png';
-import {Link} from 'react-router-dom'
 import store from '../store/index'
+import {updatePage} from '../actions/index'
 
 class Movie extends React.PureComponent {
 
@@ -46,6 +46,10 @@ class Movie extends React.PureComponent {
         });
     }
 
+    goBack = () => {
+        store.dispatch(updatePage(store.getState().page - 1));
+    }
+
     render() {
 
         let backURL;
@@ -73,7 +77,7 @@ class Movie extends React.PureComponent {
         return (
            <div className="row pura-dabba" style={{backgroundImage: 'url('+ backURL +')' , backgroundPosition: 'center' , backgroundRepeat:'no-repeat' , backgroundSize:'cover'}}>
            <div className="col-sm-12 heading">
-          <Link to="/" style={{textDecoration: 'none'}}><h1 className="thanks1">MoviesADDICT </h1></Link> 
+                <h1 className="thanks1">MoviesADDICT </h1>
            </div>
             <div className="col-md-8 col-sm-12 mt-4" style={{marginLeft: 'auto' , marginRight: 'auto'}}>
                 <div className="row inner-dabba mt-4">
@@ -108,6 +112,9 @@ class Movie extends React.PureComponent {
                                 <span className="properties">Runtime:</span>  <br />
                                 <span className="grey">{this.state.runtime}mins</span>
                                 </div>
+                            </div>
+                            <div className="col-sm-12 my-3 text-center">
+                                <button className="btn btn-primary my-3" onClick={this.goBack} > Go Back </button>
                             </div>
                             </div>
                         </div>

@@ -21,6 +21,12 @@ export default (state , action) => {
                 id: action.payload.id
             };
 
+        case "SET_PAGE": 
+            return {
+                ...state,
+                page: action.payload.page
+            };
+
         default:
             return state;
     }

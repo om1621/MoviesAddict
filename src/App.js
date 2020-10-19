@@ -3,39 +3,45 @@ import Header from './components/Header'
 import Homepage from './components/Homepage'
 import Options from './components/options'
 import Movie from './components/Movie'
-import {BrowserRouter as Router , Route} from 'react-router-dom'
 import './App.css';
+import store from './store/index'
 
-export const App = () => {
-  return (
-    <>
-       <Router>
-  
-          <Route exact path='/' render = {props => (
-            <>
-              <Header />
-              <Homepage />
-            </>
-          )} />
+const App = () => {
 
-          <Route path='/options' render = {props => (
-            <>
-              <Header />
-              <Options />
-            </>
-          )} />
+  switch(store.getState().page){
+    case 1:
+      return (
+        <>
+          <Header />
+          <Homepage />
+        </>
+      );
 
-          <Route path='/movie' render = {props => (
-            <>
-              <Movie />
-            </>
-          )} />
+      case 2:
+      return (
+        <>
+        <Header />
+        <Options />
+        </>
+      );
 
-      </Router>
+      case 3:
+      return (
+        <>
+         <Movie />
+        </>
+      );
 
-    </>
-  )
+      default:
+        return(
+          <>
+          <Header />
+          <Homepage />
+          </>
+        );
+
+    
+  }
 }
 
-
-export default App;
+export default App

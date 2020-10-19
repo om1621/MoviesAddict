@@ -1,8 +1,7 @@
 import React from 'react';
 import './component-style/bootstrap.min.css'
-import {Redirect} from 'react-router-dom';
 import './component-style/searchBox.css'
-import {updateSearchValues} from '../actions/index'
+import {updateSearchValues, updatePage} from '../actions/index'
 import store from '../store/index'
 
 class SearchBox extends React.PureComponent {
@@ -11,22 +10,13 @@ class SearchBox extends React.PureComponent {
         crieteriaType : 'Name',
         genreValue: 'Drama',
         searchValue: '',
-        redirect: false
     }
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.setState({
-            redirect: true
-        })
+        store.dispatch(updatePage(2));
         store.dispatch(updateSearchValues(this.state.crieteriaType, this.state.genreValue, this.state.searchValue));
         console.log(store.getState())
-    }
-
-    renderRedirect = () => {
-        if(this.state.redirect){
-            return (<Redirect to="/options" />)
-        }
     }
 
     handleChange = (e) => {
@@ -39,7 +29,6 @@ class SearchBox extends React.PureComponent {
     render() {
         return (
         <div className="container">
-            {this.renderRedirect()}
             <div className="row my-auto" style={{paddingTop: "10%"}}>
                 <div className="col-md-6 col-sm-12" style={{marginRight: 'auto', marginLeft: 'auto'}}>
                     <div className="card card-body">

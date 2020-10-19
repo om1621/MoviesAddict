@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom'
 import './component-style/option.css'
 import './component-style/bootstrap.min.css'
 import axios from 'axios'
-import {updateMovie} from '../actions/index'
+import {updateMovie, updatePage} from '../actions/index'
 import store from '../store/index'
  
 const Option = ({id}) => {
@@ -31,6 +30,7 @@ const Option = ({id}) => {
     }, [id]);
 
     const setCurrentMovie = () => {
+        store.dispatch(updatePage(3));
         store.dispatch(updateMovie(id));
     }
 
@@ -56,11 +56,11 @@ const Option = ({id}) => {
                             </div>
                             <div className="col-sm-12  my-3">
                                 <p className="synopsis">{option.synopsis}</p>
-                                <button className="btn btn-primary px-2 details" onClick={setCurrentMovie} > <Link to="/movie" style={{color: "white", textDecoration: "none"}} className="link">View Details</Link></button>
+                                <button className="btn btn-primary px-2 details link" onClick={setCurrentMovie} style={{color: "white", textDecoration: "none"}} >View Details</button>
                             </div>
                         </div>
                     </div>
-                    
+
         </div>  
     )
 }

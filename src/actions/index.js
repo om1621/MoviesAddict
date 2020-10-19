@@ -20,3 +20,10 @@ export const updateMovie = (id) => ({
        id: id
     }
 });
+
+export const updatePage = (page) => ({
+    type: "SET_PAGE",
+    payload: {
+       page: page
+    }
+});
