@@ -11,5 +11,5 @@ A movie search utilitity using built React.js and MoviesDB API.
 
 ```
 #To build app
--npm build
+-npm run build
 ```
