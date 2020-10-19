@@ -3,14 +3,17 @@ import axios from 'axios';
 import './component-style/movies.css';
 import logo from './images/logo.png';
 import {Link} from 'react-router-dom'
+import store from '../store/index'
 
 class Movie extends React.PureComponent {
 
     state = {
-        id: this.props.id
+        id: store.getState().id
     }
 
     componentDidMount() {
+
+        console.log(store.getState());
 
        let id ;
 
@@ -71,9 +74,6 @@ class Movie extends React.PureComponent {
            <div className="row pura-dabba" style={{backgroundImage: 'url('+ backURL +')' , backgroundPosition: 'center' , backgroundRepeat:'no-repeat' , backgroundSize:'cover'}}>
            <div className="col-sm-12 heading">
           <Link to="/" style={{textDecoration: 'none'}}><h1 className="thanks1">MoviesADDICT </h1></Link> 
-           </div>
-           <div className="col-sm-12">
-           <iframe title="avg" width="560" height="315" src="https://www.youtube.com/embed/6ZfuNTqbHE8" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
            </div>
             <div className="col-md-8 col-sm-12 mt-4" style={{marginLeft: 'auto' , marginRight: 'auto'}}>
                 <div className="row inner-dabba mt-4">

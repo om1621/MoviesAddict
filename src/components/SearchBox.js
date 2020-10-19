@@ -1,22 +1,32 @@
 import React from 'react';
 import './component-style/bootstrap.min.css'
-import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import './component-style/searchBox.css'
+import {updateSearchValues} from '../actions/index'
+import store from '../store/index'
 
 class SearchBox extends React.PureComponent {
 
     state = {
         crieteriaType : 'Name',
         genreValue: 'Drama',
-        searchValue: ''
+        searchValue: '',
+        redirect: false
     }
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.getCrieteria(this.state);
-        console.log(this.state);
-        // const searchValue = this.state.searchValue;
-        // localStorage.setItem("searchValue" , searchValue);
+        this.setState({
+            redirect: true
+        })
+        store.dispatch(updateSearchValues(this.state.crieteriaType, this.state.genreValue, this.state.searchValue));
+        console.log(store.getState())
+    }
+
+    renderRedirect = () => {
+        if(this.state.redirect){
+            return (<Redirect to="/options" />)
+        }
     }
 
     handleChange = (e) => {
@@ -25,16 +35,11 @@ class SearchBox extends React.PureComponent {
         });
     }
 
-    // componentDidMount(){
-    //     const searchValue = localStorage.getItem("searchValue");
-    //     this.setState({
-    //         searchValue
-    //     })
-    // }
 
     render() {
         return (
         <div className="container">
+            {this.renderRedirect()}
             <div className="row my-auto" style={{paddingTop: "10%"}}>
                 <div className="col-md-6 col-sm-12" style={{marginRight: 'auto', marginLeft: 'auto'}}>
                     <div className="card card-body">
@@ -67,7 +72,9 @@ class SearchBox extends React.PureComponent {
                             <input type="text" id="value" name="searchValue" placeholder="e.g Arjun Reddy" className="form-control" onChange={this.handleChange}/>
                             <small id="emailHelp" className="form-text text-muted">If you choose by Name</small>
                         </div>
-                      <button className="btn btn-primary btn-block"> <Link  to="/options" style={{color:'white', textDecoration: "none"}}>SEARCH</Link></button>
+
+                        <button className="btn btn-primary btn-block" type="submit">SEARCH</button>
+                     
                     </form>
                     </div>   
                 </div>

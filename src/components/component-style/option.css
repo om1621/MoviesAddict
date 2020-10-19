@@ -9,28 +9,18 @@
     float: right;
 }
 
+.row
+{
+    margin: 0;
+}
+
 .option
 {
     margin-top: 2rem !important;
     margin-bottom: 2rem !important;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-
-
-
-/* @media screen and (min-width: 440px)
-{
-    .dibba
-    {
-        background: white !important;
-        color: black !important;
-    }
-} */
-
-/* .dibba
-{
-    margin-left: auto;
-    margin-right: auto;
-} */
 
 .movie-title
 {
@@ -45,13 +35,9 @@
         max-width: 300px;
     }
 
-    .bada-dibba
-    {
-        margin-left: 20px;
-    }
 }
 
-@media screen and (max-width: 1640px)
+@media screen and (max-width: 2000px)
 {
 
     .photu-dabba
@@ -80,6 +66,7 @@
     {
         width: 310px;
         height: 100%;
+        margin: 0 auto;
     }
 
     .faded-one
@@ -90,8 +77,9 @@
     .text-one
     {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         z-index: 2;
         background: transparent !important;
         border: none;

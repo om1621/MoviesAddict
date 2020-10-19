@@ -1,82 +1,90 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Option from './option';
+import store from '../store/index'
+import {updateIds} from '../actions/index'
+import loader from '../loading.gif'
 
-class Options extends React.PureComponent {
+const Options = () => {
 
-   state = {
-       options:[ ]
-   }
+    const [loading, setLoading] = useState(false);
 
-   componentDidMount(){
+    useEffect(() => {
 
-    let ids = this.props.ids;
+        const getData = async () => {
 
-        
-            if(ids.length > 0)
+            let ids = [];
+            if(store.getState().crieteriaType === "Name")
             {
-                localStorage.setItem('ids', JSON.stringify(ids));
-                console.log(ids);
-            }
-            else
-            {
-               ids = localStorage.getItem('ids');
-               ids = JSON.parse(ids);
-               console.log(ids);
-            }
-           
-        // if(ids === null)
-        // {
-        //     ids = localStorage.getItem("ids");
-        //     console.log("here are ids");
-        //     console.log(ids);
-        // }
-        // else
-        // {
-        //     localStorage.setItem("ids", ids);
-        //     console.log("ids saved");
-        //     console.log(this.props.ids);
-        // }
-
-            ids.map(id => {
-                let option = {};
-                axios.get('https://api.themoviedb.org/3/movie/'+ id +'?api_key=3af54e3536d0791aa80b3ca05af373bb')
+            await axios.get('https://api.themoviedb.org/3/search/movie?query='+ store.getState().searchValue +'&api_key=cfe422613b250f702980a3bbf9e90716')
                 .then(res => {
-                    option.id = res.data.id;
-                    option.title = res.data.original_title;
-                    option.rating = res.data.vote_average;
-                    option.synopsis = res.data.overview;
-                    option.poster_path = res.data.poster_path;
-        
-        
-                    this.setState({
-                        options: [...this.state.options , option]
+                    res.data.results.map((movie) => {
+                        ids.push(movie.id);
+                        return 1; // just to avoid warning
+                    });
+
+                   
+                });
+            }
+            else if(store.getState().crieteriaType === "Genre")
+            {
+                let genreId;
+                await axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=cfe422613b250f702980a3bbf9e90716&language=en-US')
+                .then(async (res) => {
+                    res.data.genres.map((genre) => {
+                        if(store.getState().genreValue === genre.name)
+                        {
+                            genreId = genre.id;
+                        }
+                        return 1;
+                    });
+
+                    await axios.get('https://api.themoviedb.org/3/discover/movie?api_key=3af54e3536d0791aa80b3ca05af373bb&with_genres=' + genreId)
+                    .then(res => {
+                        res.data.results.map((movie) => {
+                            ids.push(movie.id);
+                            return 1;
+                        });
                     });
                 });
-                return console.log(option);
-               
-            }); 
-    }
+                
+            }
 
+            store.dispatch(updateIds(ids));
+            setLoading(true);
 
-    render() {
-        return (
-            <React.Fragment>
-            <div className="row">
+        }
+
+        getData();
+ 
+    }, [])
+
+    return (
+        <>
+            { loading ? ( <> <div className="row">
                 <div className="col-sm-12 text-center mt-5">
-                    <h1 className="result">RESULTS MATCHING YOUR SEARCH</h1>
+                    <h1 className="result"> {store.getState().ids.length} RESULTS MATCHING YOUR SEARCH </h1>
                 </div>
             </div>
        
-            <div className='row my-4 option' style={{paddingLeft: "7.5%"}}>
-                {this.state.options.map(option => (
-                    <Option option = {option} key={option.id} getId={this.props.getId}/>
+            <div className='row my-4 option'>
+                {store.getState().ids.map(id => (
+                    <Option id={id} />
                 ))}
-            </div>   
-            </React.Fragment>
+            </div> </> ) 
+            : 
+            (
+                <>
+                    <div style={{minHeight: "80vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        <img src={loader} alt="loader" />
+                    </div>
+                </>
+            )}
             
-        )
-    }
+        </>
+    )
 }
 
 export default Options;
+
+

@@ -1,0 +1,11 @@
+.page-item .page-link {
+    color: #eaf3fb;
+    cursor: auto;
+    background: transparent;
+    border: 1px solid #56ca9a;
+}
+
+.page-item:hover .page-link
+{
+    background-color: #359c71b2;
+}
