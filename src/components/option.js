@@ -60,6 +60,7 @@ const Option = ({id}) => {
                             </div>
                         </div>
                     </div>
+                    
         </div>  
     )
 }
